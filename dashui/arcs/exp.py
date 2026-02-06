@@ -23,9 +23,9 @@ class ExpData(resolution_plot.ExpData):
         self.Ei_list = list(vdata.Energy.unique())
         return
 
-fc1data = ExpData(os.path.join(here, '../../ARCS//V_Cali_Int_Res_FC1_2018_v2.dat'))
-fc2data = ExpData(os.path.join(here, '../../ARCS/V_Cali_Int_Res_FC2_2018_v2.dat'))
-fc1_highres_data = ExpData(os.path.join(here, '../../ARCS/V_Cali_Int_Res_FC1_HighRes_2018_v2.dat'))
+fc1data = ExpData(os.path.join(here, 'V_Cali_Int_Res_FC1_2018_v2.dat'))
+fc2data = ExpData(os.path.join(here, 'V_Cali_Int_Res_FC2_2018_v2.dat'))
+fc1_highres_data = ExpData(os.path.join(here, 'V_Cali_Int_Res_FC1_HighRes_2018_v2.dat'))
 vscatt_scale = 2.6e4
 vscatt_scale *=60./1.4
 vscatt_scale *= 1.5/2

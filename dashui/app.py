@@ -74,6 +74,8 @@ def main():
     if len(sys.argv)>1 and '--single' in sys.argv:
         global single_user_mode
         single_user_mode = True
+        import webbrowser
+        webbrowser.open_new('http://localhost:8050/')
 
     if len(sys.argv)>1 and sys.argv[1] == 'debug':
         app.run_server(debug=True, threaded=True)

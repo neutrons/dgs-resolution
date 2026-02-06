@@ -23,10 +23,9 @@ class ExpData(resolution_plot.ExpData):
         return
     
 
-datadir = os.path.join(here, '../../CNCS/')
-expdata_highres = ExpData(os.path.join(datadir, './V_Cali_Int_Res_HighRes_E500bins.dat'))
-expdata_interm = ExpData(os.path.join(datadir, './V_Cali_Int_Res_Intermediate.dat'))
-expdata_highflux = ExpData(os.path.join(datadir, './V_Cali_Int_Res_HighFlux.dat'))
+expdata_highres = ExpData(os.path.join(here, './V_Cali_Int_Res_HighRes_E500bins.dat'))
+expdata_interm = ExpData(os.path.join(here, './V_Cali_Int_Res_Intermediate.dat'))
+expdata_highflux = ExpData(os.path.join(here, './V_Cali_Int_Res_HighFlux.dat'))
 
 data = {
     'High Resolution': expdata_highres,

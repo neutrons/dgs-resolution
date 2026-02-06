@@ -6,7 +6,7 @@ import numpy as np
 
 from PyChop import PyChop2
 
-yamlpath = os.path.join(here, '../../ARCS/PyChop/arcs-09122018.yaml')
+yamlpath = os.path.join(here, './arcs-09122018.yaml')
 
 scale_flux = 600
 

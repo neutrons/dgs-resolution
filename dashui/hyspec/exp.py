@@ -24,9 +24,8 @@ class ExpData(resolution_plot.ExpData):
         return
     
 
-datadir = os.path.join(here, '../../HYSPEC/')
-expdata_HU = ExpData(os.path.join(datadir, './hyspec_HU_res_Flux.dat.csv'))
-expdata_PG = ExpData(os.path.join(datadir, './hyspec_PG_res_Flux.dat.csv'))
+expdata_HU = ExpData(os.path.join(here, './hyspec_HU_res_Flux.dat.csv'))
+expdata_PG = ExpData(os.path.join(here, './hyspec_PG_res_Flux.dat.csv'))
 
 data = {
     'HU': expdata_HU,
