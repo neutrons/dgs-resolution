@@ -1,6 +1,0 @@
-*.pyc
-*~
-*.pkl
-# pixi environments
-.pixi/*
-!.pixi/config.toml
