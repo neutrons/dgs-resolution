@@ -35,6 +35,7 @@ def set_headers(response):
     headers["Strict-Transport-Security"] = value
     return response
 
+
 from dgs_resolution import arcs
 from dgs_resolution import cncs
 from dgs_resolution import hyspec
