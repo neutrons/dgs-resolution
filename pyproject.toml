@@ -1,0 +1,195 @@
+########################
+### Project Metadata ###
+########################
+
+[project]
+name = "dgs-resolution"
+description = "Experimental data and modeling for resolution of DGS instruments at SNS"
+version = "0.1.0"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+readme = "README.md"
+keywords = ["neutrons"]
+
+[project.urls]
+homepage = "https://github.com/sns-chops/resolution"
+repository = "https://github.com/sns-chops/resolution"
+# documentation = add_url_to_readthedoc_here
+issues = "https://github.com/sns-chops/resolution/issues"
+
+[project.gui-scripts]
+resolution-ui = "dgs_resolution.app:main"
+
+####################
+### Build config ###
+####################
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling", "versioningit"]
+
+[tool.hatch.build]
+artifacts = ["_version.py", "*.yml", "*.yaml", "*.ini"]
+
+[tool.hatch.build.hooks.versioningit-onbuild]
+source-file = "src/quicknxs/_version.py"
+build-file = "quicknxs/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dgs_resolution"]
+
+[tool.versioningit.vcs]
+method = "git"
+default-tag = "0.1.0"
+
+[tool.versioningit.next-version]
+method = "minor"
+
+[tool.versioningit.format]
+distance = "{next_version}.dev{distance}"
+dirty = "{version}"
+distance-dirty = "{next_version}.dev{distance}"
+
+[tool.versioningit.write]
+file = "src/dgs_resolution/_version.py"
+
+###################
+### Pixi config ###
+###################
+
+[tool.pixi.workspace]
+name = "dgs_resolution"
+platforms = ["linux-64"]
+channels = ["conda-forge", "https://prefix.dev/pixi-build-backends"]
+# Required until the build feature becomes stable
+preview = ["pixi-build"]
+
+## Dependency tables - https://pixi.sh/latest/reference/pixi_manifest/#the-dependencies-tables
+## These tables override the dependencies listed in the [project] section
+
+[tool.pixi.dependencies]
+# Conda package dependencies
+dash = ">=4.0.0"
+flask = "*"
+pandas = "*"
+pyyaml = "*"
+scipy = "*"
+waitress = "*"
+
+[tool.pixi.pypi-dependencies]
+# PyPI dependencies, including this package to allow local editable installs
+dgs_resolution = { path = ".", editable = true }
+
+# Pixi Build configuration - https://pixi.sh/latest/reference/pixi_manifest/#pixi-build
+
+[tool.pixi.package.host-dependencies]
+hatchling = "*"
+
+[tool.pixi.package.run-dependencies]
+python = ">=3.11"
+dash = ">=4.0.0"
+flask = "*"
+pandas = "*"
+pyyaml = "*"
+scipy = "*"
+waitress = "*"
+
+
+[tool.pixi.package]
+name = "resolution"
+version = "0.0.0"   # placeholder, overwritten by sync-version
+
+[tool.pixi.package.build]
+backend = { name = "pixi-build-python", version = "*" }
+
+# Environments and Features
+
+[tool.pixi.environments]
+default = { features = [
+    "docs",
+    "dev",
+    "package",
+    "test",
+], solve-group = "default" }
+
+[tool.pixi.feature.test.dependencies]
+# Dependencies for testing
+
+[tool.pixi.feature.package.dependencies]
+anaconda-client = ">=1.13.0,<2"
+twine = ">=6.1.0,<7"
+hatch = "*"
+
+[tool.pixi.feature.package.pypi-dependencies]
+toml-cli = "*"
+
+[tool.pixi.feature.dev.dependencies]
+pip = ">=26.0"     # CVE-2026-1703
+pip-audit = "*"
+pre-commit = "*"
+ruff = "*"
+
+[tool.pixi.feature.docs.dependencies]
+# Dependencies for building documentation
+
+[tool.pixi.tasks]
+# Documentation
+build-docs = { cmd = 'sphinx-build -b html docs docs/_build', description = "Build documentation" }
+test-docs = { cmd = "sphinx-build -M doctest docs docs/_build", description = "Test building the documentation" }
+# Testing
+test = { description = "Run the test suite", cmd = "pytest" }
+# Packaging
+conda-build-command = { cmd = "pixi build", description = "Build the conda package command" }
+conda-build = { description = "Build the conda package", depends-on = [
+    "backup-toml",
+    "sync-version",
+    "conda-build-command",
+    "reset-toml",
+] }
+conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
+    "conda-build",
+] }
+# Misc
+audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit the package dependencies for vulnerabilities" }
+# Cleaning
+clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
+clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
+clean-docs = { cmd = "rm -rf docs/_build", description = "Clean up documentation build artifacts" }
+clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
+clean-all = { description = "Clean all artifacts", depends-on = [
+    "clean",
+    "clean-conda",
+    "clean-docs",
+    "clean-pypi",
+] }
+sync-version = { cmd = 'toml set tool.pixi.package.version "0.1.0" --toml-path pyproject.toml', description = "Sync pyproject.toml version" }
+backup-toml = { cmd = "cp pyproject.toml pyproject.toml.bak", description = "Backup the pyproject.toml file" }
+reset-toml = { cmd = "cp pyproject.toml.bak pyproject.toml; rm pyproject.toml.bak", description = "Reset the pyproject.toml file to the original state" }
+
+##############
+### Pytest ###
+##############
+
+# Add pytest configuration here if needed.
+# See https://github.com/neutrons/python_project_template for an example.
+
+############
+### Ruff ###
+############
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+exclude = ["notebooks/**", "**/*.ipynb"]
+
+[tool.ruff.lint]
+select = ["A", "ARG", "ASYNC", "BLE", "C90", "E", "F", "I", "N", "UP032", "W"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["packagenamepy"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
