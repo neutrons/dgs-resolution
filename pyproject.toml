@@ -12,13 +12,13 @@ readme = "README.md"
 keywords = ["neutrons"]
 
 [project.urls]
-homepage = "https://github.com/sns-chops/resolution"
-repository = "https://github.com/sns-chops/resolution"
+homepage = "https://github.com/neutrons/dgs-resolution"
+repository = "https://github.com/neutrons/dgs-resolution"
 # documentation = add_url_to_readthedoc_here
-issues = "https://github.com/sns-chops/resolution/issues"
+issues = "https://github.com/neutrons/dgs-resolution/issues"
 
 [project.gui-scripts]
-resolution-ui = "dgs_resolution.app:main"
+dgsres-ui = "dgs_resolution.app:main"
 
 ####################
 ### Build config ###
@@ -96,8 +96,8 @@ waitress = "*"
 
 
 [tool.pixi.package]
-name = "resolution"
-version = "0.0.0"   # placeholder, overwritten by sync-version
+name = "dgs_resolution"
+version = "0.0.0"       # placeholder, overwritten by sync-version
 
 [tool.pixi.package.build]
 backend = { name = "pixi-build-python", version = "*" }
@@ -124,7 +124,7 @@ hatch = "*"
 toml-cli = "*"
 
 [tool.pixi.feature.dev.dependencies]
-pip = ">=26.0"     # CVE-2026-1703
+pip = ">=26.0"
 pip-audit = "*"
 pre-commit = "*"
 ruff = "*"
@@ -187,7 +187,7 @@ select = ["A", "ARG", "ASYNC", "BLE", "C90", "E", "F", "I", "N", "UP032", "W"]
 ignore = []
 
 [tool.ruff.lint.isort]
-known-first-party = ["packagenamepy"]
+known-first-party = ["dgs_resolution"]
 
 [tool.ruff.format]
 quote-style = "double"

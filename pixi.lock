@@ -668,7 +668,7 @@ packages:
 - pypi: ./
   name: dgs-resolution
   version: 0.1.0
-  sha256: aa1ad2292cff01eaa3c93cc3edead7d24c321b5319acb5e64ce4e2135e1ba84f
+  sha256: 3c90da2e4b4f64d2b8be45368cbc3022c78b0d105f38987c6d19e025fdbe23d3
   requires_python: '>=3.11'
 - conda: https://conda.anaconda.org/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
   sha256: 6d977f0b2fc24fee21a9554389ab83070db341af6d6f09285360b2e09ef8b26e
