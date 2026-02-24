@@ -5,7 +5,7 @@
 [project]
 name = "dgs-resolution"
 description = "Experimental data and modeling for resolution of DGS instruments at SNS"
-version = "0.1.0"
+dynamic = ["version"]
 requires-python = ">=3.11"
 license = { text = "MIT" }
 readme = "README.md"
@@ -28,12 +28,15 @@ dgsres-ui = "dgs_resolution.app:main"
 build-backend = "hatchling.build"
 requires = ["hatchling", "versioningit"]
 
+[tool.hatch.version]
+source = "versioningit"
+
 [tool.hatch.build]
 artifacts = ["_version.py", "*.yml", "*.yaml", "*.ini"]
 
 [tool.hatch.build.hooks.versioningit-onbuild]
-source-file = "src/quicknxs/_version.py"
-build-file = "quicknxs/_version.py"
+source-file = "src/dgs_resolution/_version.py"
+build-file = "dgs_resolution/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/dgs_resolution"]
@@ -83,7 +86,9 @@ dgs_resolution = { path = ".", editable = true }
 # Pixi Build configuration - https://pixi.sh/latest/reference/pixi_manifest/#pixi-build
 
 [tool.pixi.package.host-dependencies]
+python = ">=3.11"
 hatchling = "*"
+versioningit = "*"
 
 [tool.pixi.package.run-dependencies]
 python = ">=3.11"
@@ -119,6 +124,7 @@ default = { features = [
 anaconda-client = ">=1.13.0,<2"
 twine = ">=6.1.0,<7"
 hatch = "*"
+versioningit = "*"
 
 [tool.pixi.feature.package.pypi-dependencies]
 toml-cli = "*"
@@ -162,7 +168,7 @@ clean-all = { description = "Clean all artifacts", depends-on = [
     "clean-docs",
     "clean-pypi",
 ] }
-sync-version = { cmd = 'toml set tool.pixi.package.version "0.1.0" --toml-path pyproject.toml', description = "Sync pyproject.toml version" }
+sync-version = { cmd = 'version=$(python -m versioningit); toml set tool.pixi.package.version "$version" --toml-path pyproject.toml', description = "Sync pyproject.toml version with Git version" }
 backup-toml = { cmd = "cp pyproject.toml pyproject.toml.bak", description = "Backup the pyproject.toml file" }
 reset-toml = { cmd = "cp pyproject.toml.bak pyproject.toml; rm pyproject.toml.bak", description = "Reset the pyproject.toml file to the original state" }
 

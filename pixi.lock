@@ -191,6 +191,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/urllib3-2.6.3-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/userpath-1.9.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/uv-0.10.4-h6dd6661_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/versioningit-3.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/virtualenv-20.38.0-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/waitress-3.0.2-pyhcf101f3_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/webencodings-0.5.1-pyhd8ed1ab_3.conda
@@ -667,8 +668,8 @@ packages:
   timestamp: 1615232388757
 - pypi: ./
   name: dgs-resolution
-  version: 0.1.0
-  sha256: 5d4d55e2287eb057a31eee92b27c9b0d23f7ac72808f379f0f56dc58e25edd6b
+  version: 0.0.0
+  sha256: b806ffac8e002956c6d19113e88e169abcb68ab149d4ce7dffcbb88e4bfc1094
   requires_python: '>=3.11'
 - conda: https://conda.anaconda.org/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
   sha256: 6d977f0b2fc24fee21a9554389ab83070db341af6d6f09285360b2e09ef8b26e
@@ -2726,6 +2727,20 @@ packages:
   purls: []
   size: 18322220
   timestamp: 1771408130652
+- conda: https://conda.anaconda.org/conda-forge/noarch/versioningit-3.3.0-pyhd8ed1ab_0.conda
+  sha256: 4b9a3f6738ab6e241b12b2fe9258f7e051678b911ca0f0ab042becc29096ff51
+  md5: 57b96d99ac0f5a548f7001618db6a561
+  depends:
+  - importlib-metadata >=3.6
+  - packaging >=17.1
+  - python >=3.9
+  - tomli >=1.2,<3.0
+  license: MIT
+  license_family: MIT
+  purls:
+  - pkg:pypi/versioningit?source=hash-mapping
+  size: 167034
+  timestamp: 1751113901223
 - conda: https://conda.anaconda.org/conda-forge/noarch/virtualenv-20.38.0-pyhcf101f3_0.conda
   sha256: 5676ca6e53df7353955a716716e60359b5777b2216613420dd1b546224dd2648
   md5: eaf8f08a04ab2d8612e45aa4f4c33357

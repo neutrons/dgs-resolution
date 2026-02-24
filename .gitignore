@@ -4,3 +4,4 @@
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+dgs_resolution*.conda
