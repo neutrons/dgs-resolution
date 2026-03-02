@@ -84,12 +84,16 @@ def main():
         description="Run the DGS resolution app.", usage="python app.py [--mode single|server] [--debug]"
     )
     parser.add_argument(
+        "-m",
         "--mode",
         help="Mode to run the app in: `single` for single-user mode, or `production`",
         default="single",
     )
     parser.add_argument(
-        "--debug", action="store_true", help="Run the app in debug mode (Flask development server with hot reloading)."
+        "-d",
+        "--debug",
+        action="store_true",
+        help="Run the app in debug mode (Flask development server with hot reloading).",
     )
     args = parser.parse_args()
 
