@@ -80,29 +80,28 @@ def browser_closed():
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser(description="Run the DGS resolution app.")
-    parser.add_argument(
-        "--single",
-        action="store_true",
-        help="Run in single-user mode (server will shut down when browser window is closed)",
+    parser = argparse.ArgumentParser(
+        description="Run the DGS resolution app.", usage="python app.py [--mode single|server] [--debug]"
     )
     parser.add_argument(
-        "mode",
-        nargs="?",
-        default="production",
-        help='Run mode: "debug" for development, "production" for production server',
+        "--mode",
+        help="Mode to run the app in: `single` for single-user mode, or `production`",
+        default="single",
+    )
+    parser.add_argument(
+        "--debug", action="store_true", help="Run the app in debug mode (Flask development server with hot reloading)."
     )
     args = parser.parse_args()
 
-    if args.single:
+    if args.mode == "single":
         global single_user_mode
         single_user_mode = True
         import webbrowser
 
         webbrowser.open_new("http://localhost:8050/")
 
-    if args.mode == "debug":
-        app.run_server(debug=True, threaded=True)
+    if args.debug:
+        app.run(debug=True, threaded=True)
     else:
         from waitress import serve
 
