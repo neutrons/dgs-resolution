@@ -40,7 +40,7 @@ def build_interface(app):
                 [
                     html.Tr(
                         [
-                            html.Td(Ei_widget_elements),
+                            html.Td(Ei_widget_elements, style=dict(width="14em")),
                             html.Td(FC_widget_elements, style=dict(width="14em")),
                         ]
                     )

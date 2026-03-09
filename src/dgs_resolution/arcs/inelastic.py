@@ -95,7 +95,7 @@ def build_interface(app):
                 children=[
                     dcc.Tab(label="Summary", children=[summary], style=tab_style, value="summary"),
                     dcc.Tab(label="Plot", children=[plotcontainer], style=tab_style, value="plot"),
-                    dcc.Tab(label="Convolution", children=[conv], style=tab_style, value="convolution"),
+                    dcc.Tab(label="Convolution", children=[conv], style=tab_style, value="convolution", disabled=True),
                 ],
                 value="summary",
             ),

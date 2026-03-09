@@ -109,7 +109,7 @@ def main():
     else:
         from waitress import serve
 
-        serve(app.server, host="0.0.0.0", port=8050, url_scheme="https")
+        serve(app.server, host="0.0.0.0", port=8050, threads=12, url_scheme="https")
 
 
 if __name__ == "__main__":
