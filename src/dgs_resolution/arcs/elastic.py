@@ -85,14 +85,14 @@ def build_callbacks(app):
             {
                 "data": data,
                 "layout": dict(
-                    title="Flux vs resolution",
+                    title={"text": "Flux vs resolution"},
                     showlegend=True,
                     xaxis=dict(
-                        title="FWHM (meV)",
+                        title={"text": "FWHM (meV)"},
                         showspikes=True,
                     ),
                     yaxis=dict(
-                        title="Flux (counts/s/cm^2/MW)",
+                        title={"text": "Flux (counts/s/cm^2/MW)"},
                         showspikes=True,
                     ),
                 ),
