@@ -39,7 +39,6 @@ class ExpData:
         if condition is None:
             xdata = self.getDataArr(x)
             condition = np.ones(xdata.shape, dtype='bool')
-        # print x,y
         labels = [''] * int(condition.sum())
         for attr_name, (attr_label, format_str) in extra_info.items():
             fmt = '%s='+format_str
