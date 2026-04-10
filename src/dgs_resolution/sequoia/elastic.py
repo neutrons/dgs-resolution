@@ -116,14 +116,14 @@ def build_callbacks(app):
             {
                 "data": data,
                 "layout": dict(
-                    title="Flux vs resolution",
+                    title={"text": "Flux vs resolution"},
                     showlegend=True,
                     xaxis=dict(
-                        title="FWHM (meV)",
+                        title={"text": "FWHM (meV)"},
                         showspikes=True,
                     ),
                     yaxis=dict(
-                        title="Flux (counts/s/cm^2/MW)",
+                        title={"text": "Flux (counts/s/cm^2/MW)"},
                         showspikes=True,
                     ),
                 ),
@@ -131,14 +131,14 @@ def build_callbacks(app):
             {
                 "data": data2,
                 "layout": dict(
-                    title="FWHM vs Chopper Frequency",
+                    title={"text": "FWHM vs Chopper Frequency"},
                     showlegend=True,
                     xaxis=dict(
-                        title="Chopper frequency (Hz)",
+                        title={"text": "Chopper frequency (Hz)"},
                         showspikes=True,
                     ),
                     yaxis=dict(
-                        title="FWHM (meV)",
+                        title={"text": "FWHM (meV)"},
                         showspikes=True,
                     ),
                 ),
@@ -146,14 +146,14 @@ def build_callbacks(app):
             {
                 "data": data3,
                 "layout": dict(
-                    title="Flux vs Chopper Frequency",
+                    title={"text": "Flux vs Chopper Frequency"},
                     showlegend=True,
                     xaxis=dict(
-                        title="Chopper frequency (Hz)",
+                        title={"text": "Chopper frequency (Hz)"},
                         showspikes=True,
                     ),
                     yaxis=dict(
-                        title="Flux (counts/s/cm^2/MW)",
+                        title={"text": "Flux (counts/s/cm^2/MW)"},
                         showspikes=True,
                     ),
                 ),

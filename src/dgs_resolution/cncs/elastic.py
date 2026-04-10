@@ -83,15 +83,15 @@ def build_callbacks(app):
             {
                 'data': fwhm_data,
                 'layout': dict(
-                    title = 'Resolution vs incident energy',
+                    title = {"text": "Resolution vs incident energy"},
                     showlegend=True,
                     xaxis=dict(
-                        title='Ei (meV)',
+                        title={"text": "Ei (meV)"},
                         type='log',
                         showspikes=True,
                     ),
                     yaxis=dict(
-                        title='FWHM (meV)',
+                        title={"text": "FWHM (meV)"},
                         type='log',
                         showspikes=True,
                     ),
@@ -100,15 +100,15 @@ def build_callbacks(app):
             {
                 'data': flux_data,
                 'layout': dict(
-                    title = 'Flux vs incident energy',
+                    title = {"text": "Flux vs incident energy"},
                     showlegend=True,
                     xaxis=dict(
-                        title='Ei (meV)',
+                        title={"text": "Ei (meV)"},
                         type='log',
                         showspikes=True,
                     ),
                     yaxis=dict(
-                        title='Flux (counts/s/cm^2/MW)',
+                        title={"text": "Flux (counts/s/cm^2/MW)"},
                         type='log',
                         showspikes=True,
                     ),

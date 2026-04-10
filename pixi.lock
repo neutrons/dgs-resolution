@@ -6,8 +6,6 @@ environments:
     - url: https://prefix.dev/pixi-build-backends/
     indexes:
     - https://pypi.org/simple
-    options:
-      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
@@ -672,9 +670,10 @@ packages:
   timestamp: 1615232388757
 - pypi: ./
   name: dgs-resolution
-  version: 0.1.0
+  version: 0.4.0.dev4
   sha256: b806ffac8e002956c6d19113e88e169abcb68ab149d4ce7dffcbb88e4bfc1094
   requires_python: '>=3.11'
+  editable: true
 - conda: https://conda.anaconda.org/conda-forge/noarch/distlib-0.4.0-pyhd8ed1ab_0.conda
   sha256: 6d977f0b2fc24fee21a9554389ab83070db341af6d6f09285360b2e09ef8b26e
   md5: 003b8ba0a94e2f1e117d0bd46aebc901

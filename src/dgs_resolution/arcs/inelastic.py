@@ -264,9 +264,9 @@ def update_summary_and_plot(Ei, chopper_select, chopper_freq):
             {"x": E, "y": yfit, "type": "lines", "name": "resolution polynomial fit"},
         ],
         "layout": {
-            "title": "Energy dependence of resolution (PyChop)",
-            "xaxis": {"title": "E (meV)"},
-            "yaxis": {"title": "FWHM (meV)"},
+            "title": {"text": "Energy dependence of resolution (PyChop)"},
+            "xaxis": {"title": {"text": "E (meV)"}},
+            "yaxis": {"title": {"text": "FWHM (meV)"}},
         },
     }
     if (res != res).any():
