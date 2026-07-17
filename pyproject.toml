@@ -85,6 +85,10 @@ dgs_resolution = { path = ".", editable = true }
 
 # Pixi Build configuration - https://pixi.sh/latest/reference/pixi_manifest/#pixi-build
 
+[tool.pixi.package.build-dependencies]
+hatchling = "*"
+versioningit = "*"
+
 [tool.pixi.package.host-dependencies]
 python = ">=3.11"
 hatchling = "*"
@@ -99,7 +103,6 @@ pyyaml = "*"
 scipy = "*"
 waitress = "*"
 
-
 [tool.pixi.package]
 name = "dgs_resolution"
 version = "0.0.0"       # placeholder, overwritten by sync-version
@@ -113,20 +116,17 @@ backend = { name = "pixi-build-python", version = "*" }
 default = { features = [
     "docs",
     "dev",
-    "package",
+    "build",
     "test",
 ], solve-group = "default" }
 
 [tool.pixi.feature.test.dependencies]
 # Dependencies for testing
 
-[tool.pixi.feature.package.dependencies]
-anaconda-client = ">=1.13.0,<2"
-twine = ">=6.1.0,<7"
-hatch = "*"
+[tool.pixi.feature.build.dependencies]
 versioningit = "*"
 
-[tool.pixi.feature.package.pypi-dependencies]
+[tool.pixi.feature.build.pypi-dependencies]
 toml-cli = "*"
 
 [tool.pixi.feature.dev.dependencies]
@@ -145,14 +145,13 @@ test-docs = { cmd = "sphinx-build -M doctest docs docs/_build", description = "T
 # Testing
 test = { description = "Run the test suite", cmd = "pytest" }
 # Packaging
-conda-build-command = { cmd = "pixi build", description = "Build the conda package command" }
+conda-build-command = { cmd = "pixi publish --target-channel ./local-channel", description = "Build the conda package command" }
 conda-build = { description = "Build the conda package", depends-on = [
-    "backup-toml",
     "sync-version",
     "conda-build-command",
-    "reset-toml",
+    "reset-version",
 ] }
-conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
+conda-publish = { cmd = "pixi upload anaconda --owner neutrons *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
     "conda-build",
 ] }
 # Misc
@@ -161,16 +160,16 @@ audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit the packag
 clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
 clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
 clean-docs = { cmd = "rm -rf docs/_build", description = "Clean up documentation build artifacts" }
-clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
 clean-all = { description = "Clean all artifacts", depends-on = [
     "clean",
     "clean-conda",
     "clean-docs",
     "clean-pypi",
 ] }
+# workaround for dynamic versioning
 sync-version = { cmd = 'version=$(python -m versioningit); toml set tool.pixi.package.version "$version" --toml-path pyproject.toml', description = "Sync pyproject.toml version with Git version" }
 backup-toml = { cmd = "cp pyproject.toml pyproject.toml.bak", description = "Backup the pyproject.toml file" }
-reset-toml = { cmd = "cp pyproject.toml.bak pyproject.toml; rm pyproject.toml.bak", description = "Reset the pyproject.toml file to the original state" }
+reset-version = { cmd = "toml set tool.pixi.package.version \"0.0.0\" --toml-path pyproject.toml", description = "Reset the package version to 0.0.0" }
 
 ##############
 ### Pytest ###
