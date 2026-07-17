@@ -1,7 +1,8 @@
 *.pyc
 *~
 *.pkl
-# pixi environments
+
+# pixi artifacts
 .pixi/*
 !.pixi/config.toml
-dgs_resolution*.conda
+local-channel/
